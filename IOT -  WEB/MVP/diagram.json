@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -67.2, "left": 187.24, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -36.9,
+      "left": -61.7,
+      "attrs": { "distance": "5" }
+    },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": -351.2,
+      "left": 664.62,
+      "attrs": {}
+    },
+    { "type": "wokwi-slide-switch", "id": "sw1", "top": -34, "left": 396.7, "attrs": {} },
+    {
+      "type": "wokwi-text",
+      "id": "text1",
+      "top": -249.6,
+      "left": 585.6,
+      "attrs": { "text": "*Em Cima da Porta\nDetectaria se tem alguém dentro da sala\n" }
+    },
+    {
+      "type": "wokwi-text",
+      "id": "text2",
+      "top": -144,
+      "left": -211.2,
+      "attrs": {
+        "text": "*Dentro do Hack\nQuando a Porta abre ela detecta, o Slide Switch é para simular um Sensor MC-38, as funções seriam parecidas.\nA Distancia é para ver se ter uma pessoa mexendo no Hack"
+      }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "ultrasonic1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "esp:5", "ultrasonic1:TRIG", "green", [ "h57.6", "v172.8", "h-326" ] ],
+    [ "esp:18", "ultrasonic1:ECHO", "blue", [ "h28.8", "v163.2", "h-287.2" ] ],
+    [ "esp:GND.3", "sw1:2", "black", [ "h0" ] ],
+    [ "esp:4", "sw1:3", "green", [ "h0" ] ],
+    [ "pir1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "pir1:GND", "esp:GND.3", "black", [ "v0" ] ],
+    [ "pir1:OUT", "esp:19", "green", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
