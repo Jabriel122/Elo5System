@@ -1,0 +1,45 @@
+// Definição dos Pinos
+const int PIN_TRIG = 5;
+const int PIN_ECHO = 18;
+const int PIN_SENSOR_PORTA = 4;
+
+void setup() {
+  Serial.begin(115200);
+
+  // Configuração dos Pinos dos dois sensores
+  pinMode(PIN_TRIG, OUTPUT);
+  pinMode(PIN_ECHO, INPUT);
+  pinMode(PIN_SENSOR_PORTA, INPUT_PULLUP);
+}
+
+void loop() {
+  // --- 1. LEITURA DO SENSOR DE PORTA (MC-38 / Switch) ---
+  bool portaAberta = (digitalRead(PIN_SENSOR_PORTA) == HIGH);
+
+  // --- 2. LEITURA DO SENSOR ULTRASSÔNICO (HC-SR04) ---
+  digitalWrite(PIN_TRIG, LOW);
+  delayMicroseconds(2);
+  digitalWrite(PIN_TRIG, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(PIN_TRIG, LOW);
+
+  uint32_t duracao = pulseIn(PIN_ECHO, HIGH, 30000);
+  float distanciaCm = (duracao * 0.0343f) / 2.0f;
+
+  // --- 3. EXIBIÇÃO UNIFICADA NO MONITOR SERIAL ---
+  Serial.print("[PORTA] ");
+  if (portaAberta) {
+    Serial.print("ALERTA: Porta ABERTA! | ");
+  } else {
+    Serial.print("Status: Fechada       | ");
+  }
+
+  Serial.print("[DISTÂNCIA] ");
+  if (duracao == 0 || distanciaCm > 400.0 || !portaAberta) {
+    Serial.println("Fora de alcance");
+  } else {
+    Serial.printf("%.1f cm\n", distanciaCm);
+  }
+
+  delay(500);
+}
