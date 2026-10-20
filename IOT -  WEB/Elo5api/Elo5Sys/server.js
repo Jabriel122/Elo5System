@@ -10,7 +10,7 @@ app.use(cors());
 // Servir o arquivo frontend index.html na raiz
 app.use(express.static(path.join(__dirname, 'public')));
 
-const BROKER_URL    = 'mqtt://broker.hivemq.com:1883';
+const BROKER_URL = 'mqtt://broker.hivemq.com:1883';
 const TOPIC_SENSORS = 'elo5-system/sensores/dados';
 
 let estadoAtual = {
@@ -65,6 +65,14 @@ mqttClient.on('message', (topic, payload) => {
       decisao: decisao,
       statusClass: classeAlerta
     };
+
+    const ultimo = historicoLogs[0];
+    const repetido = ultimo &&
+      ultimo.porta === novoLog.porta &&
+      ultimo.pir === novoLog.pir &&
+      ultimo.decisao === novoLog.decisao;
+
+    if (!dados.porta_aberta && repetido) return; // porta fechada e nada mudou: não repete
 
     // Adiciona ao topo e limita a 50 itens
     historicoLogs.unshift(novoLog);

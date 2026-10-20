@@ -1,0 +1,9 @@
+Primeiro Passo - Inicia o dispositivos IOT os serão pegos pelo o MQTT
+
+Segundo Passo - Abra o Terminal
+
+Terceiro Passo - Entre na pasta do projeto - "cd /Elo5Sys"
+
+Quarto Passo -  Inicia a API com "node server.js"
+
+Quinto Passo -  Pega o Link "http://localhost:3000" que vai ser liberado pela a API.

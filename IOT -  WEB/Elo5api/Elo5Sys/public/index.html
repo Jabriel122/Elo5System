@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -177,6 +178,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <div class="container">
@@ -222,36 +224,45 @@
   </div>
 
   <script>
+    const tbody = document.getElementById('logTableBody');
+    const INTERVALO_MS = 1500;
+
+    async function buscarLogs() {
+      const response = await fetch('/api/sensores/logs');
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    }
+
+    function renderizarTabela(logs) {
+      if (!logs || logs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Nenhum evento registrado ainda.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = logs.map(log => `
+        <tr>
+          <td style="color: var(--text-muted); font-size: 0.85rem;">${log.hora}</td>
+          <td>${log.porta}</td>
+          <td>${log.pir}</td>
+          <td>${log.distancia}</td>
+          <td><span class="badge ${log.statusClass}">${log.decisao}</span></td>
+        </tr>
+      `).join('');
+    }
+
     async function atualizarLogs() {
       try {
-        const response = await fetch('/api/sensores/logs');
-        const data = await response.json();
-
-        const tbody = document.getElementById('logTableBody');
-
-        if (!data.logs || data.logs.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Nenhum evento registrado ainda.</td></tr>`;
-          return;
-        }
-
-        tbody.innerHTML = data.logs.map(log => `
-          <tr>
-            <td style="color: var(--text-muted); font-size: 0.85rem;">${log.hora}</td>
-            <td>${log.porta}</td>
-            <td>${log.pir}</td>
-            <td>${log.distancia}</td>
-            <td><span class="badge ${log.statusClass}">${log.decisao}</span></td>
-          </tr>
-        `).join('');
-
+        const data = await buscarLogs();
+        renderizarTabela(data.logs);
       } catch (error) {
         console.error('Erro ao buscar logs:', error);
       }
     }
 
-    // Atualiza os dados na tela a cada 1.5 segundos
-    setInterval(atualizarLogs, 1500);
+    // Um único timer, iniciado uma vez ao abrir a página
     atualizarLogs();
+    setInterval(atualizarLogs, INTERVALO_MS);
   </script>
 </body>
+
 </html>
