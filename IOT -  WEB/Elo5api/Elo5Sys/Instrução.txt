@@ -4,6 +4,10 @@ Segundo Passo - Abra o Terminal
 
 Terceiro Passo - Entre na pasta do projeto - "cd /Elo5Sys"
 
-Quarto Passo -  Inicia a API com "node server.js"
+Quarto Passo - Instala a biblioteca MQTT - "npm install express mqtt cors"
 
-Quinto Passo -  Pega o Link "http://localhost:3000" que vai ser liberado pela a API.
+Quinto Passo -  Atualizar as biboteca - "npm audit fix --force"
+
+Sexto Passo -  Inicia a API com "node server.js"
+
+Sétimo Passo -  Pega o Link "http://localhost:3000" que vai ser liberado pela a API.

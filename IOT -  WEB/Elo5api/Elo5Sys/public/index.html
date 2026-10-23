@@ -211,12 +211,13 @@
             <th>SENSOR DE PORTA (MC-38)</th>
             <th>PIR (MOVIMENTO)</th>
             <th>ULTRASSÔNICO</th>
+            <th>CARTÃO NFC</th>
             <th>DECISÃO / STATUS</th>
           </tr>
         </thead>
         <tbody id="logTableBody">
           <tr>
-            <td colspan="5" style="text-align: center; color: var(--text-muted);">Aguardando dados da API...</td>
+            <td colspan="6" style="text-align: center; color: var(--text-muted);">Aguardando dados da API...</td>
           </tr>
         </tbody>
       </table>
@@ -227,6 +228,14 @@
     const tbody = document.getElementById('logTableBody');
     const INTERVALO_MS = 1500;
 
+    // Escapa o texto vindo da API antes de colocá-lo no HTML
+    // (o broker MQTT público aceita mensagens de qualquer pessoa)
+    function esc(valor) {
+      return String(valor ?? '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
     async function buscarLogs() {
       const response = await fetch('/api/sensores/logs');
       if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -235,17 +244,18 @@
 
     function renderizarTabela(logs) {
       if (!logs || logs.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; color: var(--text-muted);">Nenhum evento registrado ainda.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhum evento registrado ainda.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = logs.map(log => `
         <tr>
-          <td style="color: var(--text-muted); font-size: 0.85rem;">${log.hora}</td>
-          <td>${log.porta}</td>
-          <td>${log.pir}</td>
-          <td>${log.distancia}</td>
-          <td><span class="badge ${log.statusClass}">${log.decisao}</span></td>
+          <td style="color: var(--text-muted); font-size: 0.85rem;">${esc(log.hora)}</td>
+          <td>${esc(log.porta)}</td>
+          <td>${esc(log.pir)}</td>
+          <td>${esc(log.distancia)}</td>
+          <td>${esc(log.cartao)}</td>
+          <td><span class="badge ${esc(log.statusClass)}">${esc(log.decisao)}</span></td>
         </tr>
       `).join('');
     }

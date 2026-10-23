@@ -77,15 +77,18 @@ mqttClient.on('message', (topic, payload) => {
 
     let decisaoExibida = decisao;
     let classeExibida = classeAlerta;
+    let cartaoExibido = "—";
 
     if (cartaoValido) {
       const nome = CARTOES_AUTORIZADOS[cartaoUid];
       if (nome) {
         decisaoExibida = `ACESSO AUTORIZADO: ${nome}`;
         classeExibida = "ok";
+        cartaoExibido = `${nome} (${cartaoUid})`;
       } else {
         decisaoExibida = `ACESSO NEGADO: ${cartaoUid}`;
         classeExibida = "alerta";
+        cartaoExibido = cartaoUid;
       }
     }
 
@@ -96,6 +99,7 @@ mqttClient.on('message', (topic, payload) => {
       porta: dados.porta_aberta ? "ABERTA" : "FECHADA",
       pir: dados.pir_movimento ? "COM MOVIMENTO" : "SEM MOVIMENTO",
       distancia: dados.distancia_cm !== null ? `${dados.distancia_cm} cm` : "FORA DE ALCANCE",
+      cartao: cartaoExibido,
       decisao: decisaoExibida,
       statusClass: classeExibida
     };
