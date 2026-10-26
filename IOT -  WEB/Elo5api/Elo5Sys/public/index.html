@@ -94,6 +94,17 @@
       box-shadow: 0 0 8px var(--alert-green);
     }
 
+    /* Cores do indicador de estado do rack */
+    .dot.cinza {
+      background-color: var(--text-muted);
+      box-shadow: none;
+    }
+
+    .dot.vermelho {
+      background-color: var(--alert-red);
+      box-shadow: 0 0 8px var(--alert-red);
+    }
+
     /* Título da Seção */
     .section-title {
       display: flex;
@@ -193,6 +204,7 @@
       </div>
       <div class="status-bar">
         <div class="status-item"><span class="dot"></span> Sistema Online</div>
+        <div class="status-item"><span class="dot cinza" id="rackDot"></span> <span id="rackStatus">Rack: aguardando cartão</span></div>
         <div class="status-item">📡 Broker MQTT: Ativo</div>
       </div>
     </header>
@@ -208,11 +220,11 @@
         <thead>
           <tr>
             <th>HORA</th>
+            <th>ID NFC</th>
             <th>SENSOR DE PORTA (MC-38)</th>
             <th>PIR (MOVIMENTO)</th>
             <th>ULTRASSÔNICO</th>
-            <th>CARTÃO NFC</th>
-            <th>DECISÃO / STATUS</th>
+            <th>EVENTO / STATUS</th>
           </tr>
         </thead>
         <tbody id="logTableBody">
@@ -251,19 +263,38 @@
       tbody.innerHTML = logs.map(log => `
         <tr>
           <td style="color: var(--text-muted); font-size: 0.85rem;">${esc(log.hora)}</td>
+          <td>${esc(log.idNfc)}</td>
           <td>${esc(log.porta)}</td>
           <td>${esc(log.pir)}</td>
           <td>${esc(log.distancia)}</td>
-          <td>${esc(log.cartao)}</td>
           <td><span class="badge ${esc(log.statusClass)}">${esc(log.decisao)}</span></td>
         </tr>
       `).join('');
+    }
+
+    // Indicador do estado do rack no cabeçalho (OCIOSO / ATIVO / SAINDO)
+    function atualizarSessao(status) {
+      const fase = status && status.fase;
+      let texto = 'Rack: aguardando cartão';
+      let cor = 'cinza';
+
+      if (fase === 'ATIVO') {
+        texto = 'Rack: em uso — ' + (status.idNfc || '');
+        cor = '';
+      } else if (fase === 'SAINDO') {
+        texto = 'Rack: saiu com a porta aberta';
+        cor = 'vermelho';
+      }
+
+      document.getElementById('rackStatus').textContent = texto;
+      document.getElementById('rackDot').className = ('dot ' + cor).trim();
     }
 
     async function atualizarLogs() {
       try {
         const data = await buscarLogs();
         renderizarTabela(data.logs);
+        atualizarSessao(data.statusAtual);
       } catch (error) {
         console.error('Erro ao buscar logs:', error);
       }
