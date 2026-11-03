@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net">
   <diagram name="Página-1" id="3Uab9bXzn8lhVd_UVqFc">
-    <mxGraphModel dx="6792" dy="4486" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2634" dy="1887" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -42,7 +42,7 @@
         <mxCell id="nmpC4VF2FHRoI56Uavmq-8" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Tem permissão?" vertex="1">
           <mxGeometry height="140" width="120" x="354" y="585" as="geometry" />
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-11" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#FFFFFF,#FFFFFF);" value="&lt;br&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Passa &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;o &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;cartão NCR no Sensor&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+        <mxCell id="nmpC4VF2FHRoI56Uavmq-11" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);" value="&lt;br&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Passa &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;o &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;cartão NCR no Sensor&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="60" width="120" x="354" y="340" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-12" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Gerado ID de NCR - Inserido no LOG" vertex="1">
@@ -54,10 +54,8 @@
         <mxCell id="nmpC4VF2FHRoI56Uavmq-13" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Acesso negado -&amp;gt; inserido no logs" vertex="1">
           <mxGeometry height="80" width="120" x="160" y="690" as="geometry" />
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-21" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-18">
-          <mxGeometry relative="1" x="-0.0095" as="geometry">
-            <mxPoint x="320" y="1310" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="athC-vkUMkpC00ZdbEAB-4" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-92">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-16" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Acesso negado nos logs + ID de NCR usado&amp;nbsp;" vertex="1">
           <mxGeometry height="60" width="120" x="160" y="875" as="geometry" />
@@ -143,13 +141,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-48" parent="1" style="whiteSpace=wrap;html=1;" value="Registra o logs de movimentação isso indicará que tem alguém na sala" vertex="1">
-          <mxGeometry height="60" width="120" x="1030" y="1325" as="geometry" />
+          <mxGeometry height="67.5" width="130" x="1025" y="1321.5" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-108" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-92">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-50" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Nenhum cartão passado - Inserido no LOG" vertex="1">
-          <mxGeometry height="80" width="120" x="-280" y="180" as="geometry" />
+          <mxGeometry height="80" width="120" x="-280" y="179" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-54" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-53" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -237,7 +235,7 @@
             <mxPoint x="210.00000000000045" y="2990" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-95" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;rounded=1;" value="Para sair do Rack tem que apertar o botão" vertex="1">
+        <mxCell id="nmpC4VF2FHRoI56Uavmq-95" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;rounded=1;" value="Para sair do Sala tem que apertar o botão" vertex="1">
           <mxGeometry height="60" width="120" x="665" y="2770" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-109" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="nmpC4VF2FHRoI56Uavmq-4">
@@ -246,6 +244,11 @@
               <mxPoint x="1890" y="70" />
             </Array>
             <mxPoint x="1250" y="2270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="athC-vkUMkpC00ZdbEAB-6" connectable="0" parent="nmpC4VF2FHRoI56Uavmq-109" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.9588" y="3" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-99" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="&quot;Id NFC - saindo&quot; -&amp;gt; inserido no logs" vertex="1">
@@ -289,7 +292,12 @@
         <mxCell id="nmpC4VF2FHRoI56Uavmq-120" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-117" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-119" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-117" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Saiu e deixou a porta aberta" vertex="1">
+        <mxCell id="athC-vkUMkpC00ZdbEAB-5" connectable="0" parent="nmpC4VF2FHRoI56Uavmq-120" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="0.0614" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nmpC4VF2FHRoI56Uavmq-117" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Saiu e deixou a porta aberta?" vertex="1">
           <mxGeometry height="160" width="140" x="1820" y="1850" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-122" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-119" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-66">
