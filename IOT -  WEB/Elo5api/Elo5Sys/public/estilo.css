@@ -1,0 +1,223 @@
+/* Estilo compartilhado pelas páginas index.html (Rack Matrix) e camera.html */
+
+:root {
+  --bg-dark: #0b111e;
+  --card-bg: #131d2f;
+  --table-header: #1b283d;
+  --accent-cyan: #00d2a8;
+  --accent-blue: #00b4d8;
+  --text-main: #e2e8f0;
+  --text-muted: #8492a6;
+  --alert-red: #ff4757;
+  --alert-orange: #ffa502;
+  --alert-green: #2ed573;
+  --grid-line: #1e2d4a;
+  --hover-row: #1a273e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  padding: 20px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Cabeçalho superior */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #1e2d42;
+  margin-bottom: 25px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--accent-cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(0, 210, 168, 0.4);
+}
+
+.logo-title h1 {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.logo-title span {
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  letter-spacing: 3px;
+}
+
+/* Botões de ícone (data, filtro, câmera, fechar) */
+.icone {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-main);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.icone:hover {
+  background-color: var(--hover-row);
+}
+
+.icone:focus-visible,
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.icone svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.icone.destaque {
+  background-color: var(--accent-cyan);
+  color: var(--bg-dark);
+}
+
+.icone.destaque:hover {
+  filter: brightness(1.12);
+}
+
+.icone.ativo {
+  color: var(--accent-cyan);
+}
+
+/* Cartões e tabelas */
+.card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--grid-line);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+
+.card-table {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow-x: auto;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--grid-line);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+thead {
+  background-color: var(--table-header);
+}
+
+th {
+  padding: 12px 14px;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+tbody tr {
+  border-bottom: 1px solid #18253b;
+  transition: background 0.2s;
+}
+
+tbody tr:hover {
+  background-color: var(--hover-row);
+}
+
+td {
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+td.num {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Selos de status */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.badge.ok {
+  background-color: rgba(46, 213, 115, 0.15);
+  color: var(--alert-green);
+  border: 1px solid var(--alert-green);
+}
+
+.badge.atencao {
+  background-color: rgba(255, 165, 2, 0.15);
+  color: var(--alert-orange);
+  border: 1px solid var(--alert-orange);
+}
+
+.badge.alerta {
+  background-color: rgba(255, 71, 87, 0.15);
+  color: var(--alert-red);
+  border: 1px solid var(--alert-red);
+}
+
+.badge.neutro {
+  background-color: rgba(132, 146, 166, 0.15);
+  color: var(--text-muted);
+  border: 1px solid var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

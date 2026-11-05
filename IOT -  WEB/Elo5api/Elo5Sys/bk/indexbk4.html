@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELO5 SYSTEM - Tabela de Log IoT</title>
+  <style>
+    :root {
+      --bg-dark: #0b111e;
+      --card-bg: #131d2f;
+      --table-header: #1b283d;
+      --accent-cyan: #00d2a8;
+      --accent-blue: #00b4d8;
+      --text-main: #e2e8f0;
+      --text-muted: #8492a6;
+      --alert-red: #ff4757;
+      --alert-orange: #ffa502;
+      --alert-green: #2ed573;
+      --grid-line: #1e2d4a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Cabeçalho superior */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #1e2d42;
+      margin-bottom: 25px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 210, 168, 0.4);
+    }
+
+    .logo-title h1 {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .logo-title span {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      letter-spacing: 3px;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--alert-green);
+      box-shadow: 0 0 8px var(--alert-green);
+    }
+
+    /* Título da Seção */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .section-title h2 {
+      font-size: 1.2rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    .section-title .atualizado {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* Painel de clima da sala */
+    .clima-grid {
+      display: grid;
+      grid-template-columns: minmax(260px, 340px) 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 860px) {
+      .clima-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      border: 1px solid var(--grid-line);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+    }
+
+    .stat-label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .stat-temp {
+      font-size: 3rem;
+      font-weight: 600;
+      line-height: 1.1;
+      color: #fff;
+    }
+
+    .stat-umid {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .situacao-motivo {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      min-height: 1.2em;
+    }
+
+    .situacao-faixa {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--grid-line);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .grafico-titulo {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .grafico-titulo span {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .grafico-area {
+      position: relative;
+    }
+
+    #grafico {
+      display: block;
+      width: 100%;
+      height: auto;
+      outline: none;
+    }
+
+    #grafico:focus-visible {
+      outline: 2px solid var(--accent-blue);
+      outline-offset: 2px;
+    }
+
+    #tooltip {
+      position: absolute;
+      top: 8px;
+      display: none;
+      pointer-events: none;
+      background-color: var(--bg-dark);
+      border: 1px solid var(--grid-line);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      z-index: 2;
+    }
+
+    #tooltip .tt-hora {
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    #tooltip .tt-linha {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    #tooltip .tt-chave {
+      width: 12px;
+      height: 2px;
+      background-color: var(--accent-blue);
+    }
+
+    #tooltip .tt-valor {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    #tooltip .tt-rotulo {
+      color: var(--text-muted);
+    }
+
+    details.dados-clima {
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    details.dados-clima summary {
+      cursor: pointer;
+    }
+
+    details.dados-clima table {
+      margin-top: 8px;
+      max-width: 420px;
+    }
+
+    details.dados-clima th,
+    details.dados-clima td {
+      padding: 6px 12px;
+      font-size: 0.8rem;
+    }
+
+    /* Tabela de Logs */
+    .card-table {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      overflow-x: auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--grid-line);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead {
+      background-color: var(--table-header);
+    }
+
+    th {
+      padding: 14px 20px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #18253b;
+      transition: background 0.2s;
+    }
+
+    tbody tr:hover {
+      background-color: #1a273e;
+    }
+
+    td {
+      padding: 14px 20px;
+      font-size: 0.9rem;
+    }
+
+    td.num {
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    /* Badges de Decisão */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.ok {
+      background-color: rgba(46, 213, 115, 0.15);
+      color: var(--alert-green);
+      border: 1px solid var(--alert-green);
+    }
+
+    .badge.atencao {
+      background-color: rgba(255, 165, 2, 0.15);
+      color: var(--alert-orange);
+      border: 1px solid var(--alert-orange);
+    }
+
+    .badge.alerta {
+      background-color: rgba(255, 71, 87, 0.15);
+      color: var(--alert-red);
+      border: 1px solid var(--alert-red);
+    }
+
+    .badge.neutro {
+      background-color: rgba(132, 146, 166, 0.15);
+      color: var(--text-muted);
+      border: 1px solid var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header>
+      <div class="logo-container">
+        <div class="logo-icon"></div>
+        <div class="logo-title">
+          <h1>ELO5</h1>
+          <span>SYSTEM</span>
+        </div>
+      </div>
+      <div class="status-bar">
+        <div class="status-item"><span class="dot"></span> Sistema Online</div>
+        <div class="status-item">📡 Broker MQTT: Ativo</div>
+      </div>
+    </header>
+
+    <!-- Clima da sala -->
+    <div class="section-title">
+      <h2>CLIMA DA SALA</h2>
+      <span class="atualizado" id="climaAtualizado"></span>
+    </div>
+
+    <div class="clima-grid">
+      <div class="card">
+        <span class="stat-label">Temperatura</span>
+        <div class="stat-temp" id="valTemp">—</div>
+        <span class="stat-label" style="margin-top: 14px;">Umidade</span>
+        <div class="stat-umid" id="valUmid">—</div>
+
+        <span class="badge neutro" id="climaBadge">AGUARDANDO LEITURA DO SENSOR</span>
+        <p class="situacao-motivo" id="climaMotivo"></p>
+        <p class="situacao-faixa" id="climaFaixa"></p>
+      </div>
+
+      <div class="card">
+        <div class="grafico-titulo">Temperatura da sala <span>· últimos minutos</span></div>
+        <div class="grafico-area">
+          <svg id="grafico" viewBox="0 0 640 220" role="img" tabindex="0"
+            aria-label="Gráfico da temperatura da sala nos últimos minutos"></svg>
+          <div id="tooltip"></div>
+        </div>
+        <details class="dados-clima">
+          <summary>Ver dados em tabela</summary>
+          <table>
+            <thead>
+              <tr>
+                <th>HORA</th>
+                <th>TEMPERATURA</th>
+                <th>UMIDADE</th>
+              </tr>
+            </thead>
+            <tbody id="tabelaClima"></tbody>
+          </table>
+        </details>
+      </div>
+    </div>
+
+    <!-- Título -->
+    <div class="section-title">
+      <h2>SISTEMA DE LOG IOT</h2>
+    </div>
+
+    <!-- Tabela Principal de LOG -->
+    <div class="card-table">
+      <table>
+        <thead>
+          <tr>
+            <th>HORA</th>
+            <th>SENSOR DE PORTA (MC-38)</th>
+            <th>PIR (MOVIMENTO)</th>
+            <th>ULTRASSÔNICO</th>
+            <th>TEMP. / UMIDADE</th>
+            <th>EVENTO / STATUS</th>
+          </tr>
+        </thead>
+        <tbody id="logTableBody">
+          <tr>
+            <td colspan="6" style="text-align: center; color: var(--text-muted);">Aguardando dados da API...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const tbody = document.getElementById('logTableBody');
+    const INTERVALO_MS = 1500;
+
+    // Escapa o texto vindo da API antes de colocá-lo no HTML
+    // (o broker MQTT público aceita mensagens de qualquer pessoa)
+    function esc(valor) {
+      return String(valor ?? '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    async function buscarLogs() {
+      const response = await fetch('/api/sensores/logs');
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    }
+
+    // ---------- Tabela de logs ----------
+    function renderizarTabela(logs) {
+      if (!logs || logs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhum evento registrado ainda.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = logs.map(log => `
+        <tr>
+          <td style="color: var(--text-muted); font-size: 0.85rem;">${esc(log.hora)}</td>
+          <td>${esc(log.porta)}</td>
+          <td>${esc(log.pir)}</td>
+          <td>${esc(log.distancia)}</td>
+          <td class="num">${esc(log.clima)}</td>
+          <td><span class="badge ${esc(log.statusClass)}">${esc(log.decisao)}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    // ---------- Painel de clima ----------
+    const css = getComputedStyle(document.documentElement);
+    const cor = nome => css.getPropertyValue(nome).trim();
+
+    const NS = 'http://www.w3.org/2000/svg';
+    const W = 640, H = 220;
+    const M = { l: 44, r: 66, t: 14, b: 26 };
+
+    const svg = document.getElementById('grafico');
+    const tooltip = document.getElementById('tooltip');
+    let geom = null;       // escalas e elementos do último desenho (usados pelo hover)
+    let hoverX = null;     // posição do ponteiro (em coordenadas do SVG), para sobreviver ao redesenho
+    let focoIdx = null;    // posição escolhida pelo teclado
+
+    function svgEl(tag, attrs, texto) {
+      const e = document.createElementNS(NS, tag);
+      for (const k in attrs) e.setAttribute(k, attrs[k]);
+      if (texto !== undefined) e.textContent = texto;
+      return e;
+    }
+
+    function hora(t) {
+      return new Date(t).toLocaleTimeString('pt-BR');
+    }
+
+    function desenharGrafico(clima) {
+      svg.replaceChildren();
+      geom = null;
+
+      const pts = (clima.historico || []).filter(p => Number.isFinite(p.temp));
+      if (pts.length < 2 || !clima.faixas) {
+        svg.appendChild(svgEl('text', {
+          x: W / 2, y: H / 2, 'text-anchor': 'middle', fill: cor('--text-muted'), 'font-size': 13
+        }, 'Aguardando leituras do sensor...'));
+        return;
+      }
+
+      const faixa = clima.faixas.temp;
+      const temps = pts.map(p => p.temp);
+      const lo = Math.min(Math.min(...temps), faixa.idealMin) - 2;
+      const hi = Math.max(Math.max(...temps), faixa.idealMax) + 2;
+      const t0 = pts[0].t;
+      const t1 = pts[pts.length - 1].t;
+
+      const x = t => M.l + (t1 === t0 ? 0 : (t - t0) / (t1 - t0)) * (W - M.l - M.r);
+      const y = v => M.t + (hi - v) / (hi - lo) * (H - M.t - M.b);
+
+      // Faixa ideal (um "banho" verde translúcido)
+      svg.appendChild(svgEl('rect', {
+        x: M.l, y: y(faixa.idealMax), width: W - M.l - M.r, height: y(faixa.idealMin) - y(faixa.idealMax),
+        fill: 'rgba(46, 213, 115, 0.10)'
+      }));
+      svg.appendChild(svgEl('text', {
+        x: M.l + 6, y: y(faixa.idealMax) + 13, fill: cor('--text-muted'), 'font-size': 10
+      }, 'faixa ideal ' + faixa.idealMin + '–' + faixa.idealMax + ' °C'));
+
+      // Grade horizontal discreta + rótulos do eixo Y
+      const passo = (hi - lo) > 16 ? 5 : 2;
+      for (let v = Math.ceil(lo / passo) * passo; v <= hi; v += passo) {
+        svg.appendChild(svgEl('line', {
+          x1: M.l, x2: W - M.r, y1: y(v), y2: y(v), stroke: cor('--grid-line'), 'stroke-width': 1
+        }));
+        svg.appendChild(svgEl('text', {
+          x: M.l - 8, y: y(v) + 4, 'text-anchor': 'end', fill: cor('--text-muted'), 'font-size': 11
+        }, String(v)));
+      }
+
+      // Eixo X: só início e fim
+      svg.appendChild(svgEl('text', { x: M.l, y: H - 6, fill: cor('--text-muted'), 'font-size': 11 }, hora(t0)));
+      svg.appendChild(svgEl('text', {
+        x: W - M.r, y: H - 6, 'text-anchor': 'end', fill: cor('--text-muted'), 'font-size': 11
+      }, hora(t1)));
+
+      // Linha da temperatura
+      const d = pts.map((p, i) => (i ? 'L' : 'M') + x(p.t).toFixed(1) + ' ' + y(p.temp).toFixed(1)).join(' ');
+      svg.appendChild(svgEl('path', {
+        d, fill: 'none', stroke: cor('--accent-blue'), 'stroke-width': 2,
+        'stroke-linejoin': 'round', 'stroke-linecap': 'round'
+      }));
+
+      // Ponto final com anel na cor da superfície + rótulo direto do valor atual
+      const ultimo = pts[pts.length - 1];
+      svg.appendChild(svgEl('circle', {
+        cx: x(ultimo.t), cy: y(ultimo.temp), r: 4, fill: cor('--accent-blue'),
+        stroke: cor('--card-bg'), 'stroke-width': 2
+      }));
+      svg.appendChild(svgEl('text', {
+        x: x(ultimo.t) + 10, y: y(ultimo.temp) + 4, fill: cor('--text-main'), 'font-size': 12, 'font-weight': 600
+      }, ultimo.temp.toFixed(1) + ' °C'));
+
+      // Camada de hover: linha vertical + ponto
+      const cruz = svgEl('line', {
+        y1: M.t, y2: H - M.b, stroke: cor('--text-muted'), 'stroke-width': 1, visibility: 'hidden'
+      });
+      const ponto = svgEl('circle', {
+        r: 4, fill: cor('--accent-blue'), stroke: cor('--card-bg'), 'stroke-width': 2, visibility: 'hidden'
+      });
+      svg.appendChild(cruz);
+      svg.appendChild(ponto);
+
+      const captura = svgEl('rect', {
+        x: M.l, y: M.t, width: W - M.l - M.r, height: H - M.t - M.b, fill: 'transparent'
+      });
+      captura.addEventListener('pointermove', e => {
+        const r = svg.getBoundingClientRect();
+        hoverX = (e.clientX - r.left) * (W / r.width);
+        focoIdx = null;
+        mostrarHover(hoverX);
+      });
+      captura.addEventListener('pointerleave', () => {
+        hoverX = null;
+        ocultarHover();
+      });
+      svg.appendChild(captura);
+
+      geom = { pts, x, y, cruz, ponto };
+      if (hoverX !== null) mostrarHover(hoverX);
+      else if (focoIdx !== null) mostrarHover(x(pts[Math.min(focoIdx, pts.length - 1)].t));
+    }
+
+    function mostrarHover(xView) {
+      if (!geom) return;
+
+      // ponto mais próximo do ponteiro
+      let melhor = 0, menor = Infinity;
+      geom.pts.forEach((p, i) => {
+        const dist = Math.abs(geom.x(p.t) - xView);
+        if (dist < menor) { menor = dist; melhor = i; }
+      });
+      const p = geom.pts[melhor];
+      const px = geom.x(p.t);
+
+      geom.cruz.setAttribute('x1', px);
+      geom.cruz.setAttribute('x2', px);
+      geom.cruz.setAttribute('visibility', 'visible');
+      geom.ponto.setAttribute('cx', px);
+      geom.ponto.setAttribute('cy', geom.y(p.temp));
+      geom.ponto.setAttribute('visibility', 'visible');
+
+      // Tooltip (só textContent: nada vindo da API entra como HTML)
+      tooltip.replaceChildren();
+      const linhaHora = document.createElement('div');
+      linhaHora.className = 'tt-hora';
+      linhaHora.textContent = hora(p.t);
+
+      const linhaTemp = document.createElement('div');
+      linhaTemp.className = 'tt-linha';
+      const chave = document.createElement('span');
+      chave.className = 'tt-chave';
+      const valorTemp = document.createElement('span');
+      valorTemp.className = 'tt-valor';
+      valorTemp.textContent = p.temp.toFixed(1) + ' °C';
+      const rotuloTemp = document.createElement('span');
+      rotuloTemp.className = 'tt-rotulo';
+      rotuloTemp.textContent = 'temperatura';
+      linhaTemp.append(chave, valorTemp, rotuloTemp);
+
+      const linhaUmid = document.createElement('div');
+      linhaUmid.className = 'tt-linha';
+      const valorUmid = document.createElement('span');
+      valorUmid.className = 'tt-valor';
+      valorUmid.textContent = Number.isFinite(p.umid) ? Math.round(p.umid) + ' %' : '—';
+      const rotuloUmid = document.createElement('span');
+      rotuloUmid.className = 'tt-rotulo';
+      rotuloUmid.textContent = 'umidade';
+      linhaUmid.append(valorUmid, rotuloUmid);
+
+      tooltip.append(linhaHora, linhaTemp, linhaUmid);
+      tooltip.style.display = 'block';
+
+      const r = svg.getBoundingClientRect();
+      const pxTela = px * (r.width / W);
+      const largura = tooltip.offsetWidth;
+      tooltip.style.left = (pxTela + 14 + largura > r.width ? pxTela - largura - 14 : pxTela + 14) + 'px';
+    }
+
+    function ocultarHover() {
+      tooltip.style.display = 'none';
+      if (geom) {
+        geom.cruz.setAttribute('visibility', 'hidden');
+        geom.ponto.setAttribute('visibility', 'hidden');
+      }
+    }
+
+    // Teclado: setas percorrem as leituras; mostra os mesmos detalhes do hover
+    svg.addEventListener('keydown', e => {
+      if (!geom || (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight')) return;
+      e.preventDefault();
+      const n = geom.pts.length;
+      let i = focoIdx === null ? n - 1 : focoIdx;
+      i = Math.max(0, Math.min(n - 1, i + (e.key === 'ArrowLeft' ? -1 : 1)));
+      focoIdx = i;
+      hoverX = null;
+      mostrarHover(geom.x(geom.pts[i].t));
+    });
+    svg.addEventListener('blur', () => { focoIdx = null; ocultarHover(); });
+
+    const NIVEIS = {
+      IDEAL:   { classe: 'ok',      texto: '✔ CLIMA IDEAL PARA SERVIDOR' },
+      ATENCAO: { classe: 'atencao', texto: '▲ ATENÇÃO' },
+      CRITICO: { classe: 'alerta',  texto: '✖ CRÍTICO' }
+    };
+
+    function atualizarClima(clima) {
+      if (!clima) return;
+
+      const temOk = Number.isFinite(clima.temperatura);
+      const umidOk = Number.isFinite(clima.umidade);
+      document.getElementById('valTemp').textContent = temOk ? clima.temperatura.toFixed(1) + ' °C' : '—';
+      document.getElementById('valUmid').textContent = umidOk ? Math.round(clima.umidade) + ' %' : '—';
+
+      const nivel = NIVEIS[clima.nivel] || { classe: 'neutro', texto: 'AGUARDANDO LEITURA DO SENSOR' };
+      const badge = document.getElementById('climaBadge');
+      badge.className = 'badge ' + nivel.classe;
+      badge.textContent = nivel.texto;
+
+      document.getElementById('climaMotivo').textContent =
+        clima.nivel && clima.nivel !== 'IDEAL' ? (clima.motivos || []).join(' · ') : '';
+
+      if (clima.faixas) {
+        const t = clima.faixas.temp, u = clima.faixas.umid;
+        document.getElementById('climaFaixa').textContent =
+          'Faixa ideal para servidor: ' + t.idealMin + '–' + t.idealMax + ' °C · ' + u.idealMin + '–' + u.idealMax + ' % UR';
+      }
+
+      const hist = clima.historico || [];
+      const ultimo = hist[hist.length - 1];
+      document.getElementById('climaAtualizado').textContent = ultimo ? 'Última leitura: ' + hora(ultimo.t) : '';
+
+      svg.setAttribute('aria-label', temOk
+        ? 'Gráfico da temperatura da sala nos últimos minutos. Atual: ' + clima.temperatura.toFixed(1) + ' graus Celsius'
+        : 'Gráfico da temperatura da sala nos últimos minutos');
+
+      desenharGrafico(clima);
+
+      // Versão em tabela das últimas leituras
+      document.getElementById('tabelaClima').innerHTML = hist.slice(-20).reverse().map(p => `
+        <tr>
+          <td>${esc(hora(p.t))}</td>
+          <td class="num">${esc(Number.isFinite(p.temp) ? p.temp.toFixed(1) + ' °C' : '—')}</td>
+          <td class="num">${esc(Number.isFinite(p.umid) ? Math.round(p.umid) + ' %' : '—')}</td>
+        </tr>
+      `).join('');
+    }
+
+    async function atualizarLogs() {
+      try {
+        const data = await buscarLogs();
+        renderizarTabela(data.logs);
+        atualizarClima(data.clima);
+      } catch (error) {
+        console.error('Erro ao buscar logs:', error);
+      }
+    }
+
+    // Um único timer, iniciado uma vez ao abrir a página
+    atualizarLogs();
+    setInterval(atualizarLogs, INTERVALO_MS);
+  </script>
+</body>
+
+</html>
