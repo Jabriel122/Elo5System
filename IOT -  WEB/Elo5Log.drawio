@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net">
+<mxfile host="app.diagrams.net" pages="2">
   <diagram name="Página-1" id="3Uab9bXzn8lhVd_UVqFc">
-    <mxGraphModel dx="2634" dy="1887" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2565" dy="1939" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -13,7 +13,7 @@
         <mxCell id="nmpC4VF2FHRoI56Uavmq-88" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-87">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-4" parent="1" style="whiteSpace=wrap;html=1;" value="Maquina NRC com dados vazios" vertex="1">
+        <mxCell id="nmpC4VF2FHRoI56Uavmq-4" parent="1" style="whiteSpace=wrap;html=1;" value="Maquina NFC com dados vazios" vertex="1">
           <mxGeometry height="60" width="120" x="354" y="40" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-9" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="nmpC4VF2FHRoI56Uavmq-8">
@@ -50,6 +50,11 @@
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-17" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-16" value="">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BChvGZU6h9-_AviLcK1o-1" connectable="0" parent="nmpC4VF2FHRoI56Uavmq-17" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Text" vertex="1">
+          <mxGeometry relative="1" x="0.2167" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-13" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Acesso negado -&amp;gt; inserido no logs" vertex="1">
           <mxGeometry height="80" width="120" x="160" y="690" as="geometry" />
@@ -152,14 +157,14 @@
         <mxCell id="nmpC4VF2FHRoI56Uavmq-54" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-53" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-51" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;" value="Mexer no servidor ativará dois sensores - Aproximação e o da porta" vertex="1">
+        <mxCell id="nmpC4VF2FHRoI56Uavmq-51" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;" value="Mexer no servidor ira ser necessário passar par um acesso de segunda etapa um NFC" vertex="1">
           <mxGeometry height="105" width="150" x="1015" y="1450" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-56" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-55" value="">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-53" parent="1" style="whiteSpace=wrap;html=1;" value="O Sensor de aproximação indicará o quão perto a pessoa que está no servidor está mexendo nele" vertex="1">
-          <mxGeometry height="105" width="160" x="1010" y="1590" as="geometry" />
+          <mxGeometry height="105" width="160" x="1010" y="1630" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-61" edge="1" parent="1" source="nmpC4VF2FHRoI56Uavmq-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="nmpC4VF2FHRoI56Uavmq-60" value="">
           <mxGeometry relative="1" as="geometry" />
@@ -224,7 +229,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nmpC4VF2FHRoI56Uavmq-87" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Passou o cartão?" vertex="1">
+        <mxCell id="nmpC4VF2FHRoI56Uavmq-87" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Passou o cartão e é valido?" vertex="1">
           <mxGeometry height="140" width="120" x="354" y="140" as="geometry" />
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-92" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Fim" vertex="1">
@@ -305,6 +310,289 @@
         </mxCell>
         <mxCell id="nmpC4VF2FHRoI56Uavmq-119" parent="1" style="whiteSpace=wrap;html=1;" value="Continuará repetindo os log" vertex="1">
           <mxGeometry height="60" width="120" x="1610" y="1900" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="T345LYAEEr52jw7vZ1Bd" name="Página-2">
+    <mxGraphModel dx="3365" dy="1124" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="sqYjWbm77eC6LK-ytnFb-2" edge="1" parent="1" source="m82SxU14yLNTnwwW71B1-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="sqYjWbm77eC6LK-ytnFb-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m82SxU14yLNTnwwW71B1-1" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Inicio" vertex="1">
+          <mxGeometry height="80" width="120" x="260" y="30" as="geometry" />
+        </mxCell>
+        <mxCell id="gC6PMlXhnmYDGxU5Tk6V-3" edge="1" parent="1" source="sqYjWbm77eC6LK-ytnFb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="gC6PMlXhnmYDGxU5Tk6V-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sqYjWbm77eC6LK-ytnFb-1" parent="1" style="whiteSpace=wrap;html=1;" value="Maquina NFC com dados vazios na porta de entrada" vertex="1">
+          <mxGeometry height="60" width="120" x="260" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="6J-GFosJQFSBaPi-MrJ_-7" edge="1" parent="1" source="gC6PMlXhnmYDGxU5Tk6V-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="1CndnKCvdSWbCDrVVwt7-1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="479.9999999999999" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1CndnKCvdSWbCDrVVwt7-3" connectable="0" parent="6J-GFosJQFSBaPi-MrJ_-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" value="sim" vertex="1">
+          <mxGeometry relative="1" x="-0.2" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="gC6PMlXhnmYDGxU5Tk6V-2" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Passou o cartão ?" vertex="1">
+          <mxGeometry height="140" width="120" x="260" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="6J-GFosJQFSBaPi-MrJ_-5" edge="1" parent="1" source="6J-GFosJQFSBaPi-MrJ_-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="6J-GFosJQFSBaPi-MrJ_-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="6J-GFosJQFSBaPi-MrJ_-1" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Nenhum cartão passado - Inserido no LOG" vertex="1">
+          <mxGeometry height="80" width="120" x="-374" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="6J-GFosJQFSBaPi-MrJ_-2" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.388;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;entryPerimeter=0;" target="6J-GFosJQFSBaPi-MrJ_-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="260" y="331" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6J-GFosJQFSBaPi-MrJ_-3" connectable="0" parent="6J-GFosJQFSBaPi-MrJ_-2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.0891" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="6J-GFosJQFSBaPi-MrJ_-4" parent="1" style="ellipse;whiteSpace=wrap;html=1;shapeInside=1;" value="Fim" vertex="1">
+          <mxGeometry height="80" width="120" x="-374" y="611.0041379999993" as="geometry" />
+        </mxCell>
+        <mxCell id="1CndnKCvdSWbCDrVVwt7-4" edge="1" parent="1" source="1CndnKCvdSWbCDrVVwt7-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="1CndnKCvdSWbCDrVVwt7-2" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="1CndnKCvdSWbCDrVVwt7-1" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#000000,#FFFFFF);" value="&lt;br&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;Passa &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;o &lt;/span&gt;&lt;span style=&quot;font-family: Helvetica; font-size: 12px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;cartão NCR no Sensor&lt;/span&gt;&lt;br&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="260" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="1CndnKCvdSWbCDrVVwt7-2" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Gerado ID de NCR - Inserido no LOG" vertex="1">
+          <mxGeometry height="80" width="120" x="260" y="611" as="geometry" />
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-1" edge="1" parent="1" source="1CndnKCvdSWbCDrVVwt7-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;exitX=0.533;exitY=0.819;exitDx=0;exitDy=0;exitPerimeter=0;" target="bi-N40kP9o5AW_whKVQS-6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="324" y="680" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-2" edge="1" parent="1" source="bi-N40kP9o5AW_whKVQS-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;" target="bi-N40kP9o5AW_whKVQS-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-3" connectable="0" parent="bi-N40kP9o5AW_whKVQS-2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.3945" y="2" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-4" edge="1" parent="1" source="bi-N40kP9o5AW_whKVQS-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="bi-N40kP9o5AW_whKVQS-12" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540" y="970" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-5" connectable="0" parent="bi-N40kP9o5AW_whKVQS-4" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.3175" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-6" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Tem permissão?" vertex="1">
+          <mxGeometry height="140" width="120" x="264" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-7" edge="1" parent="1" source="bi-N40kP9o5AW_whKVQS-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="bi-N40kP9o5AW_whKVQS-10" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-9" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Acesso negado -&amp;gt; inserido no logs" vertex="1">
+          <mxGeometry height="80" width="120" x="70" y="850" as="geometry" />
+        </mxCell>
+        <mxCell id="-ZMA9rot5yOO5EP4nhkP-1" edge="1" parent="1" source="bi-N40kP9o5AW_whKVQS-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="6J-GFosJQFSBaPi-MrJ_-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Acesso negado nos logs + ID de NCR usado&amp;nbsp;" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="990" as="geometry" />
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-11" edge="1" parent="1" source="bi-N40kP9o5AW_whKVQS-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="euzrQhW6O89I9KdUWpNW-1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="550" y="1140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="bi-N40kP9o5AW_whKVQS-12" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Acesso Permitido-&amp;gt; inserido no logs" vertex="1">
+          <mxGeometry height="80" width="120" x="490" y="970" as="geometry" />
+        </mxCell>
+        <mxCell id="euzrQhW6O89I9KdUWpNW-6" edge="1" parent="1" source="euzrQhW6O89I9KdUWpNW-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="euzrQhW6O89I9KdUWpNW-5" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="euzrQhW6O89I9KdUWpNW-1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Acesso permito nos logs + ID de NCR usado. O ID do NCR irá aparecer em todos os LOGS." vertex="1">
+          <mxGeometry height="90" width="130" x="485" y="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="euzrQhW6O89I9KdUWpNW-8" edge="1" parent="1" source="euzrQhW6O89I9KdUWpNW-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="euzrQhW6O89I9KdUWpNW-7" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="euzrQhW6O89I9KdUWpNW-9" connectable="0" parent="euzrQhW6O89I9KdUWpNW-8" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.4706" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EkhAWC2ukH6UzZBvhghL-2" edge="1" parent="1" source="euzrQhW6O89I9KdUWpNW-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="EkhAWC2ukH6UzZBvhghL-1" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EkhAWC2ukH6UzZBvhghL-3" connectable="0" parent="EkhAWC2ukH6UzZBvhghL-2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.1486" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="euzrQhW6O89I9KdUWpNW-5" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;rounded=1;" value="Mais uma pessoa vai entrar?" vertex="1">
+          <mxGeometry height="115" width="105" x="497.5" y="1302.5" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-12" edge="1" parent="1" source="euzrQhW6O89I9KdUWpNW-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="fcWryr-fRq1DMFk7qD5p-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="euzrQhW6O89I9KdUWpNW-7" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Inserir numero de pessoas na sala do log" vertex="1">
+          <mxGeometry height="60" width="120" x="306" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="EkhAWC2ukH6UzZBvhghL-4" edge="1" parent="1" source="EkhAWC2ukH6UzZBvhghL-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=1;entryY=0.75;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="1CndnKCvdSWbCDrVVwt7-1">
+          <mxGeometry relative="1" x="0.0956" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="1260" />
+              <mxPoint x="800" y="1260" />
+              <mxPoint x="800" y="543.6" />
+            </Array>
+            <mxPoint x="770" y="1260.0000000000002" as="sourcePoint" />
+            <mxPoint x="340" y="540" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EkhAWC2ukH6UzZBvhghL-1" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Adiciona mais uma pessoa na contagem de pessoas no log e seu ID" vertex="1">
+          <mxGeometry height="60" width="120" x="740" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-1" edge="1" parent="1" source="fcWryr-fRq1DMFk7qD5p-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="fcWryr-fRq1DMFk7qD5p-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-2" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#FFFFFF,#FFFFFF);" value="&lt;br&gt;&lt;div&gt;Ao entrar na sala ativará o sensor PIR&lt;/div&gt;" vertex="1">
+          <mxGeometry height="60" width="120" x="306" y="1460" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-3" edge="1" parent="1" source="fcWryr-fRq1DMFk7qD5p-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="fcWryr-fRq1DMFk7qD5p-9" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-4" parent="1" style="whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#FFFFFF,#FFFFFF);" value="Sensor PIR irá registrar se a sala está tento movimento." vertex="1">
+          <mxGeometry height="60" width="120" x="306" y="1600" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-5" edge="1" parent="1" source="fcWryr-fRq1DMFk7qD5p-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="fcWryr-fRq1DMFk7qD5p-11" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="616.0000000000002" y="1795.0000000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-6" connectable="0" parent="fcWryr-fRq1DMFk7qD5p-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="-0.0778" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-7" edge="1" parent="1" source="fcWryr-fRq1DMFk7qD5p-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="fcWryr-fRq1DMFk7qD5p-10" value="">
+          <mxGeometry relative="1" x="-0.1089" as="geometry">
+            <mxPoint x="206" y="1795" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-8" connectable="0" parent="fcWryr-fRq1DMFk7qD5p-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.125" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-9" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;strokeColor=light-dark(#000000,#FFFFFF);fontColor=light-dark(#FFFFFF,#FFFFFF);" value="Tem movimento?" vertex="1">
+          <mxGeometry height="150" width="140" x="296" y="1720" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-10" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Sem movimento -&amp;gt; inserido no logs" vertex="1">
+          <mxGeometry height="80" width="120" x="80" y="1755" as="geometry" />
+        </mxCell>
+        <mxCell id="fcWryr-fRq1DMFk7qD5p-11" parent="1" style="shape=document;whiteSpace=wrap;html=1;boundedLbl=1;" value="Movimentação -&amp;gt; inserido no logs" vertex="1">
+          <mxGeometry height="80" width="120" x="540" y="1835" as="geometry" />
+        </mxCell>
+        <mxCell id="-mW8vajUMMm60WP0TsGb-1" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Não repetir Log mantendo o último log registrado" vertex="1">
+          <mxGeometry height="60" width="120" x="-170" y="2310" as="geometry" />
+        </mxCell>
+        <mxCell id="-mW8vajUMMm60WP0TsGb-2" edge="1" parent="1" source="1wwLBVnS6ArlmAv1i215-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="-mW8vajUMMm60WP0TsGb-1" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-110" y="2180" as="sourcePoint" />
+            <mxPoint x="-110" y="2710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="1wwLBVnS6ArlmAv1i215-1" parent="1" style="whiteSpace=wrap;html=1;rounded=1;" value="Registrar o log com o último dado registrado." vertex="1">
+          <mxGeometry height="60" width="120" x="-170" y="2045" as="geometry" />
+        </mxCell>
+        <mxCell id="1wwLBVnS6ArlmAv1i215-2" edge="1" parent="1" source="fcWryr-fRq1DMFk7qD5p-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="1wwLBVnS6ArlmAv1i215-1">
+          <mxGeometry relative="1" x="-0.3063" as="geometry">
+            <Array as="points">
+              <mxPoint x="-10" y="1795" />
+              <mxPoint x="-10" y="2060" />
+            </Array>
+            <mxPoint x="24" y="1600" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-3" edge="1" parent="1" source="fcWryr-fRq1DMFk7qD5p-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="ia1Vh1J6prX42Ut7uCAs-6" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="870" y="2060" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-5" edge="1" parent="1" source="ia1Vh1J6prX42Ut7uCAs-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="ia1Vh1J6prX42Ut7uCAs-8" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-6" parent="1" style="whiteSpace=wrap;html=1;" value="Registra o logs de movimentação isso indicará que tem alguém na sala" vertex="1">
+          <mxGeometry height="67.5" width="130" x="795" y="1841.25" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-2" edge="1" parent="1" source="ia1Vh1J6prX42Ut7uCAs-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="nHGM7joK9oLQERjAsNWa-3" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="855" y="2230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-8" parent="1" style="shape=trapezoid;perimeter=trapezoidPerimeter;whiteSpace=wrap;html=1;shapeInside=1;fixedSize=1;" value="Mexer no servidor ira ser necessário passar par um acesso de segunda etapa com um NFC" vertex="1">
+          <mxGeometry height="105" width="150" x="785" y="2010" as="geometry" />
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-9" edge="1" parent="1" source="ia1Vh1J6prX42Ut7uCAs-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" target="ia1Vh1J6prX42Ut7uCAs-12" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-10" parent="1" style="whiteSpace=wrap;html=1;" value="O Sensor de aproximação indicará o quão perto a pessoa que está no servidor está mexendo nele" vertex="1">
+          <mxGeometry height="105" width="160" x="610" y="2520" as="geometry" />
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-11" edge="1" parent="1" source="ia1Vh1J6prX42Ut7uCAs-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="995" y="3185" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ia1Vh1J6prX42Ut7uCAs-12" parent="1" style="whiteSpace=wrap;html=1;" value="Sensor da porta indicará se a porta do servidor está fechada ou aberta.&amp;nbsp;" vertex="1">
+          <mxGeometry height="117.5" width="160" x="610" y="2681.25" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-5" edge="1" parent="1" source="nHGM7joK9oLQERjAsNWa-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="nHGM7joK9oLQERjAsNWa-4" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-3" parent="1" style="whiteSpace=wrap;html=1;" value="Maquina NFC com dados vazios na porta de entrada" vertex="1">
+          <mxGeometry height="60" width="120" x="800" y="2180" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-7" edge="1" parent="1" source="nHGM7joK9oLQERjAsNWa-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="nHGM7joK9oLQERjAsNWa-6" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-8" connectable="0" parent="nHGM7joK9oLQERjAsNWa-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" value="Não" vertex="1">
+          <mxGeometry relative="1" x="-0.1088" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-10" edge="1" parent="1" source="nHGM7joK9oLQERjAsNWa-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="ia1Vh1J6prX42Ut7uCAs-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-11" connectable="0" parent="nHGM7joK9oLQERjAsNWa-10" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];inheritText=1;defaultLabelBackgroundColor=page;labelPadding=0 4;" value="Sim" vertex="1">
+          <mxGeometry relative="1" x="0.3006" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;shapeInside=1;" value="Passou Cartão?" vertex="1">
+          <mxGeometry height="157.5" width="120" x="805" y="2280" as="geometry" />
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-9" edge="1" parent="1" source="nHGM7joK9oLQERjAsNWa-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;defaultLabelBackgroundColor=page;labelPadding=0 4;" target="fcWryr-fRq1DMFk7qD5p-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1150" y="1750" />
+              <mxPoint x="600" y="1750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="nHGM7joK9oLQERjAsNWa-6" parent="1" style="whiteSpace=wrap;html=1;" value="A porta do rack não abre e registra nos logs que o Rack não teve responsavel&amp;nbsp;" vertex="1">
+          <mxGeometry height="92.5" width="150" x="1080" y="2295" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
