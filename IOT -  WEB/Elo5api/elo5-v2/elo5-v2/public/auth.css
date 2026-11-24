@@ -1,0 +1,137 @@
+/* Telas de login e cadastro (login.html e cadastro.html) */
+
+html, body { min-height: 100%; }
+
+body.auth {
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 50% 30%, #14203a 0%, #0d1528 55%, #0a1020 100%);
+}
+
+/* Marca d'água ELO5 SYSTEM atrás do formulário */
+.marca {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+.marca svg { position: absolute; left: 50%; top: 50%; width: min(1180px, 135vw); height: auto; transform: translate(-48%, -40%); }
+
+.auth-pagina {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 36px 20px 40px;
+}
+
+.auth-pagina h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.35);
+  margin-bottom: 40px;
+}
+
+.auth-cartao {
+  background: rgba(19, 29, 47, 0.55);
+  border: 1px solid rgba(0, 210, 168, 0.28);
+  border-radius: 6px;
+  box-shadow: 0 0 24px rgba(0, 210, 168, 0.08), inset 0 0 30px rgba(0, 210, 168, 0.03);
+  padding: 56px 8% 28px;
+  backdrop-filter: blur(1px);
+}
+
+.campo {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  column-gap: 14px;
+  margin-bottom: 30px;
+}
+.campo label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: right;
+}
+.campo input {
+  width: 100%;
+  height: 30px;
+  padding: 4px 10px;
+  background: rgba(8, 14, 28, 0.85);
+  border: 1px solid var(--accent-cyan);
+  border-radius: 4px;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  box-shadow: 0 0 6px rgba(0, 210, 168, 0.18);
+}
+.campo input:focus { outline: none; box-shadow: 0 0 0 2px rgba(0, 210, 168, 0.45); }
+.campo .dica {
+  grid-column: 2;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.campo[hidden] { display: none; }
+
+.erro {
+  min-height: 1.3em;
+  margin: -8px 0 10px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--alert-red);
+}
+.aviso-ok { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin: 0 0 10px; }
+
+.btn-entrar {
+  display: block;
+  width: min(280px, 60%);
+  height: 34px;
+  margin: 8px auto 18px;
+  border: 0;
+  border-radius: 4px;
+  background: #13b887;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.btn-entrar:hover { filter: brightness(1.1); }
+.btn-entrar:disabled { opacity: 0.6; cursor: wait; }
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.78rem;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 210, 168, 0.5);
+}
+.links a, .links button {
+  color: var(--text-muted);
+  background: none;
+  border: 0;
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 2px 0;
+}
+.links a:hover, .links button:hover { color: #fff; text-decoration: underline; }
+
+@media (max-width: 560px) {
+  .auth-cartao { padding: 32px 18px 20px; }
+  .campo { grid-template-columns: 1fr; row-gap: 6px; margin-bottom: 20px; }
+  .campo label { text-align: left; }
+  .campo .dica { grid-column: 1; }
+  .btn-entrar { width: 100%; }
+}

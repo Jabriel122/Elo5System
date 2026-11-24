@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELO5 SYSTEM - Login</title>
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+
+<body class="auth">
+  <div class="marca" aria-hidden="true">
+    <svg viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="330" cy="300" r="190" fill="none" stroke="#3a4256" stroke-opacity=".75" stroke-width="58"/>
+      <circle cx="560" cy="300" r="190" fill="none" stroke="#1d5e68" stroke-opacity=".35" stroke-width="58"/>
+      <text x="610" y="285" font-family="Montserrat, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="290" fill="#3a4256" fill-opacity=".62">ELO5</text>
+      <text x="610" y="470" font-family="Montserrat, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="200" fill="#3a4256" fill-opacity=".5" letter-spacing="6">SYSTEM</text>
+    </svg>
+  </div>
+
+  <main class="auth-pagina">
+    <h1>LOGIN</h1>
+
+    <form class="auth-cartao" id="form" novalidate>
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" name="email" autocomplete="username" required autofocus>
+      </div>
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+      </div>
+
+      <p class="erro" id="erro" role="alert"></p>
+      <button type="submit" class="btn-entrar" id="btn">Entrar</button>
+
+      <div class="links">
+        <button type="button" id="esqueceu" aria-expanded="false" aria-controls="ajudaSenha">Esqueceu a senha?</button>
+        <a href="cadastro.html">Criar Conta</a>
+      </div>
+      <p class="aviso-ok" id="ajudaSenha" hidden style="margin-top:12px">
+        Ainda não existe recuperação por e-mail. Procure o administrador do sistema para redefinir a sua senha.
+      </p>
+    </form>
+  </main>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    $('esqueceu').addEventListener('click', () => {
+      const aberto = $('ajudaSenha').hidden;
+      $('ajudaSenha').hidden = !aberto;
+      $('esqueceu').setAttribute('aria-expanded', String(aberto));
+    });
+
+    $('form').addEventListener('submit', async e => {
+      e.preventDefault();
+      $('erro').textContent = '';
+      if (!$('email').value.trim() || !$('senha').value) {
+        $('erro').textContent = 'Informe o e-mail e a senha.';
+        return;
+      }
+      $('btn').disabled = true;
+      try {
+        const r = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: $('email').value, senha: $('senha').value })
+        });
+        if (r.ok) { location.href = '/'; return; }
+        const d = await r.json().catch(() => ({}));
+        $('erro').textContent = d.erro || 'Não foi possível entrar.';
+        $('senha').select();
+      } catch (_) {
+        $('erro').textContent = 'Sem conexão com o servidor.';
+      }
+      $('btn').disabled = false;
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELO5 SYSTEM - Criar conta</title>
+  <link rel="stylesheet" href="estilo.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+
+<body class="auth">
+  <div class="marca" aria-hidden="true">
+    <svg viewBox="0 0 1400 700" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="330" cy="300" r="190" fill="none" stroke="#3a4256" stroke-opacity=".75" stroke-width="58"/>
+      <circle cx="560" cy="300" r="190" fill="none" stroke="#1d5e68" stroke-opacity=".35" stroke-width="58"/>
+      <text x="610" y="285" font-family="Montserrat, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="290" fill="#3a4256" fill-opacity=".62">ELO5</text>
+      <text x="610" y="470" font-family="Montserrat, 'Segoe UI', Arial, sans-serif" font-weight="800" font-size="200" fill="#3a4256" fill-opacity=".5" letter-spacing="6">SYSTEM</text>
+    </svg>
+  </div>
+
+  <main class="auth-pagina">
+    <h1>CRIAR CONTA</h1>
+
+    <form class="auth-cartao" id="form" novalidate style="padding-top:40px">
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" autocomplete="name" maxlength="60" required autofocus>
+      </div>
+      <div class="campo">
+        <label for="matricula">Matrícula</label>
+        <input type="text" id="matricula" maxlength="20" autocomplete="off">
+        <span class="dica">Opcional.</span>
+      </div>
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" autocomplete="username" required>
+      </div>
+      <div class="campo">
+        <label for="cartao">Cartão NFC</label>
+        <input type="text" id="cartao" autocomplete="off" placeholder="01:02:03:04" spellcheck="false">
+        <span class="dica">UID do cartão (aparece no Monitor Serial do ESP do NFC). Sem ele, a pessoa não entra na lista "Na sala".</span>
+      </div>
+      <div class="campo">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" autocomplete="new-password" minlength="8" required>
+        <span class="dica">Mínimo de 8 caracteres.</span>
+      </div>
+      <div class="campo">
+        <label for="senha2">Repetir senha</label>
+        <input type="password" id="senha2" autocomplete="new-password" required>
+      </div>
+      <div class="campo" id="campoCodigo" hidden>
+        <label for="codigo">Código</label>
+        <input type="text" id="codigo" autocomplete="off" spellcheck="false">
+        <span class="dica">Código de cadastro, passado pelo administrador.</span>
+      </div>
+
+      <p class="erro" id="erro" role="alert"></p>
+      <button type="submit" class="btn-entrar" id="btn">Criar conta</button>
+
+      <div class="links">
+        <a href="login.html">Já tenho conta</a>
+        <span></span>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    const $ = id => document.getElementById(id);
+
+    // Só o primeiro usuário (que vira administrador) se cadastra sem código
+    fetch('/api/auth/estado').then(r => r.json()).then(d => { $('campoCodigo').hidden = d.primeiroUsuario; }).catch(() => { $('campoCodigo').hidden = false; });
+
+    $('form').addEventListener('submit', async e => {
+      e.preventDefault();
+      $('erro').textContent = '';
+      if ($('senha').value !== $('senha2').value) { $('erro').textContent = 'As senhas não são iguais.'; return; }
+      $('btn').disabled = true;
+      try {
+        const r = await fetch('/api/auth/cadastro', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nome: $('nome').value, matricula: $('matricula').value, email: $('email').value,
+            cartao: $('cartao').value, senha: $('senha').value, codigo: $('codigo').value
+          })
+        });
+        if (r.ok) { location.href = '/'; return; }
+        const d = await r.json().catch(() => ({}));
+        $('erro').textContent = d.erro || 'Não foi possível criar a conta.';
+      } catch (_) {
+        $('erro').textContent = 'Sem conexão com o servidor.';
+      }
+      $('btn').disabled = false;
+    });
+  </script>
+</body>
+
+</html>
