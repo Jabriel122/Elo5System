@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELO5 SYSTEM - Câmera do Setor</title>
+  <link rel="stylesheet" href="../estilo.css">
+  <style>
+    .cam-pagina {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .cam-topo {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      min-height: 40px;
+    }
+
+    .cam-topo .fechar {
+      position: absolute;
+      left: 0;
+    }
+
+    .cam-topo h1 {
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    /* ---------- Visor ---------- */
+    .visor {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background-color: #000;
+      border: 1px solid var(--grid-line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .visor video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .visor .quadro {
+      position: absolute;
+      inset: 4%;
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      border-radius: 10px;
+      pointer-events: none;
+    }
+
+    .visor .canto {
+      position: absolute;
+      width: 7%;
+      aspect-ratio: 1;
+      border: 0 solid #fff;
+      pointer-events: none;
+    }
+
+    .visor .canto.esq {
+      left: 6%;
+      bottom: 8%;
+      border-left-width: 3px;
+      border-bottom-width: 3px;
+    }
+
+    .visor .canto.dir {
+      right: 6%;
+      bottom: 8%;
+      border-right-width: 3px;
+      border-bottom-width: 3px;
+    }
+
+    .visor .mira {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .visor .mira::before,
+    .visor .mira::after {
+      content: '';
+      position: absolute;
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    .visor .mira::before {
+      left: 50%;
+      top: 0;
+      width: 1.5px;
+      height: 100%;
+      transform: translateX(-50%);
+    }
+
+    .visor .mira::after {
+      top: 50%;
+      left: 0;
+      height: 1.5px;
+      width: 100%;
+      transform: translateY(-50%);
+    }
+
+    .visor .rotulo {
+      position: absolute;
+      color: #fff;
+      font-size: clamp(0.7rem, 2vw, 0.95rem);
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      pointer-events: none;
+    }
+
+    .visor .rec {
+      top: 9%;
+      left: 8%;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .visor .rec-ponto {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--alert-red);
+      animation: piscar 1.2s steps(1) infinite;
+    }
+
+    @keyframes piscar {
+      50% {
+        opacity: 0.25;
+      }
+    }
+
+    .visor .timecode {
+      top: 9%;
+      right: 8%;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .visor .cam {
+      left: 9.5%;
+      bottom: 11%;
+      transform: translateY(0);
+    }
+
+    .visor.flash::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: #fff;
+      animation: flash 0.25s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes flash {
+      from {
+        opacity: 0.85;
+      }
+      to {
+        opacity: 0;
+      }
+    }
+
+    .legenda-visor {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 8px 0 16px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .btn-texto {
+      background: transparent;
+      border: 0;
+      color: var(--accent-blue);
+      font-size: 0.8rem;
+      cursor: pointer;
+      padding: 6px 4px;
+    }
+
+    .btn-texto:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- Último log ---------- */
+    .ultimo-log td,
+    .ultimo-log th {
+      padding: 12px 16px;
+    }
+
+    .ultimo-log th.col-foto,
+    .ultimo-log td.col-foto {
+      width: 64px;
+    }
+
+    .nota-log {
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      min-height: 1.1em;
+    }
+
+    /* ---------- Fotos tiradas ---------- */
+    .fotos-titulo {
+      margin: 28px 0 12px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #fff;
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      list-style: none;
+    }
+
+    .galeria figure {
+      background-color: var(--card-bg);
+      border: 1px solid var(--grid-line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .galeria img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background-color: #000;
+    }
+
+    .galeria figcaption {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .galeria figcaption a {
+      color: var(--accent-blue);
+    }
+
+    .sem-fotos {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container cam-pagina">
+    <div class="cam-topo">
+      <a class="icone fechar" href="index.html" aria-label="Fechar e voltar ao Rack Matrix">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg>
+      </a>
+      <h1 id="tituloRack">RACK 1</h1>
+    </div>
+
+    <!-- Visor da câmera -->
+    <div class="visor" id="visor" role="img" aria-label="Imagem da câmera do rack 1">
+      <video id="video" autoplay muted playsinline hidden></video>
+      <div class="quadro"></div>
+      <div class="canto esq"></div>
+      <div class="canto dir"></div>
+      <div class="mira"></div>
+      <div class="rotulo rec"><span class="rec-ponto"></span><span>REC</span></div>
+      <div class="rotulo timecode" id="timecode">00:00:00:00</div>
+      <div class="rotulo cam">CAM</div>
+    </div>
+
+    <div class="legenda-visor">
+      <span id="origem">Imagem simulada — nenhuma câmera conectada</span>
+      <button type="button" class="btn-texto" id="btnWebcam">Usar câmera do computador</button>
+    </div>
+
+    <!-- Último log + botão de foto -->
+    <div class="card-table">
+      <table class="ultimo-log">
+        <thead>
+          <tr>
+            <th class="col-foto"><span style="position:absolute;left:-9999px">Foto</span></th>
+            <th>MOVIMENTO</th>
+            <th>APROXIMAÇÃO</th>
+            <th>ID - NFC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="col-foto">
+              <button type="button" class="icone destaque" id="btnFoto" aria-label="Tirar foto">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+              </button>
+            </td>
+            <td id="logMov">—</td>
+            <td id="logAprox">—</td>
+            <td id="logId">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota-log" id="notaLog"></p>
+    <p class="nota-log" id="aviso" role="status" aria-live="polite"></p>
+
+    <h2 class="fotos-titulo">FOTOS TIRADAS</h2>
+    <p class="sem-fotos" id="semFotos">Nenhuma foto ainda. Use o botão da câmera acima.</p>
+    <ul class="galeria" id="galeria"></ul>
+  </div>
+
+  <script>
+    const RACK_NOME = 'RACK 1';
+    const MAX_FOTOS = 12;
+    const $ = id => document.getElementById(id);
+
+    $('tituloRack').textContent = RACK_NOME;
+    document.title = 'ELO5 SYSTEM - Câmera do ' + RACK_NOME;
+
+    // =================================================================
+    // Timecode (conta desde que a página foi aberta; 30 quadros por segundo)
+    // =================================================================
+    const inicio = performance.now();
+    function timecode(ms) {
+      const total = Math.floor(ms / 1000);
+      const h = Math.floor(total / 3600), m = Math.floor((total % 3600) / 60), s = total % 60;
+      const f = Math.floor((ms % 1000) / 1000 * 30);
+      return [h, m, s, f].map(n => String(n).padStart(2, '0')).join(':');
+    }
+    setInterval(() => { $('timecode').textContent = timecode(performance.now() - inicio); }, 100);
+
+    // =================================================================
+    // Câmera do computador (opcional, para testar com imagem de verdade)
+    // =================================================================
+    const video = $('video');
+    let fluxo = null;
+
+    async function ligarWebcam() {
+      try {
+        fluxo = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        video.srcObject = fluxo;
+        video.hidden = false;
+        $('origem').textContent = 'Câmera do computador ativa';
+        $('btnWebcam').textContent = 'Voltar para a imagem simulada';
+        $('aviso').textContent = '';
+      } catch (erro) {
+        fluxo = null;
+        $('aviso').textContent = 'Não foi possível usar a câmera do computador (permissão negada ou câmera indisponível). Continuando com a imagem simulada.';
+      }
+    }
+
+    function desligarWebcam() {
+      if (fluxo) fluxo.getTracks().forEach(t => t.stop());
+      fluxo = null;
+      video.srcObject = null;
+      video.hidden = true;
+      $('origem').textContent = 'Imagem simulada — nenhuma câmera conectada';
+      $('btnWebcam').textContent = 'Usar câmera do computador';
+    }
+
+    $('btnWebcam').addEventListener('click', () => { fluxo ? desligarWebcam() : ligarWebcam(); });
+    window.addEventListener('pagehide', desligarWebcam);
+
+    // =================================================================
+    // Último log (do mesmo servidor da página Rack Matrix)
+    // =================================================================
+    let ultimoLog = null;
+
+    async function atualizarUltimoLog() {
+      try {
+        const resp = await fetch('/api/sensores/ultimo');
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        const dados = await resp.json();
+        ultimoLog = dados.ultimoLog;
+
+        if (!ultimoLog) {
+          $('logMov').textContent = '—';
+          $('logAprox').textContent = '—';
+          $('logId').textContent = '—';
+          $('notaLog').textContent = 'Nenhum log registrado ainda.';
+          return;
+        }
+
+        $('logMov').textContent = ultimoLog.movimento;
+        $('logAprox').textContent = ultimoLog.aproximacao;
+        $('logId').textContent = ultimoLog.pessoa || ultimoLog.idNfc;
+        $('notaLog').textContent = 'Último log: ' + ultimoLog.decisao + ' · ' +
+          new Date(ultimoLog.ts).toLocaleString('pt-BR');
+      } catch (erro) {
+        $('notaLog').textContent = 'Não foi possível buscar o último log.';
+      }
+    }
+
+    // =================================================================
+    // Tirar foto
+    // =================================================================
+    const fotos = [];   // { url, nome }
+
+    function desenharFrameNoCanvas(ctx, w, h) {
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+
+      if (!fluxo || !video.videoWidth) return false;
+
+      // equivalente ao object-fit: cover
+      const escala = Math.max(w / video.videoWidth, h / video.videoHeight);
+      const dw = video.videoWidth * escala, dh = video.videoHeight * escala;
+      ctx.drawImage(video, (w - dw) / 2, (h - dh) / 2, dw, dh);
+      return true;
+    }
+
+    function tirarFoto() {
+      const w = 1280, h = 720;
+      const canvas = document.createElement('canvas');
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      const real = desenharFrameNoCanvas(ctx, w, h);
+
+      // Carimbo: rack, data/hora e quem estava no último log
+      const agora = new Date();
+      const quando = agora.toLocaleDateString('pt-BR') + ' ' + agora.toLocaleTimeString('pt-BR');
+      const quem = ultimoLog ? (ultimoLog.pessoa || ultimoLog.idNfc) : '—';
+      const carimbo = RACK_NOME + '  ·  ' + quando + '  ·  ID NFC: ' + quem;
+
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
+      ctx.fillRect(0, h - 56, w, 56);
+      ctx.fillStyle = '#fff';
+      ctx.font = '600 26px "Segoe UI", Tahoma, sans-serif';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(carimbo, 20, h - 28);
+
+      if (!real) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+        ctx.font = '600 30px "Segoe UI", Tahoma, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('IMAGEM SIMULADA', w / 2, h / 2 + 80);
+        ctx.textAlign = 'start';
+      }
+
+      // efeito de "flash" no visor
+      const visor = $('visor');
+      visor.classList.remove('flash');
+      void visor.offsetWidth;
+      visor.classList.add('flash');
+
+      canvas.toBlob(blob => {
+        if (!blob) { $('aviso').textContent = 'Não foi possível gerar a foto.'; return; }
+
+        const url = URL.createObjectURL(blob);
+        const pad = n => String(n).padStart(2, '0');
+        const nome = 'rack1_' + agora.getFullYear() + pad(agora.getMonth() + 1) + pad(agora.getDate()) +
+          '_' + pad(agora.getHours()) + pad(agora.getMinutes()) + pad(agora.getSeconds()) + '.png';
+
+        fotos.unshift({ url, nome });
+        while (fotos.length > MAX_FOTOS) URL.revokeObjectURL(fotos.pop().url);
+
+        renderizarGaleria();
+        $('aviso').textContent = 'Foto tirada às ' + agora.toLocaleTimeString('pt-BR') + '.';
+      }, 'image/png');
+    }
+
+    function renderizarGaleria() {
+      $('semFotos').hidden = fotos.length > 0;
+
+      $('galeria').replaceChildren(...fotos.map(f => {
+        const li = document.createElement('li');
+        const fig = document.createElement('figure');
+
+        const abrir = document.createElement('a');
+        abrir.href = f.url;
+        abrir.target = '_blank';
+        abrir.rel = 'noopener';
+        const img = document.createElement('img');
+        img.src = f.url;
+        img.alt = 'Foto do ' + RACK_NOME + ' (' + f.nome + ')';
+        abrir.appendChild(img);
+
+        const legenda = document.createElement('figcaption');
+        const texto = document.createElement('span');
+        texto.textContent = f.nome.replace('.png', '').replace('rack1_', '').replace('_', ' ');
+        const baixar = document.createElement('a');
+        baixar.href = f.url;
+        baixar.download = f.nome;
+        baixar.textContent = 'Baixar';
+        legenda.append(texto, baixar);
+
+        fig.append(abrir, legenda);
+        li.appendChild(fig);
+        return li;
+      }));
+    }
+
+    $('btnFoto').addEventListener('click', tirarFoto);
+
+    atualizarUltimoLog();
+    setInterval(atualizarUltimoLog, 1500);
+  </script>
+</body>
+
+</html>

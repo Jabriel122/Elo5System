@@ -1,0 +1,20 @@
+services:
+  elo5:
+    build: .
+    container_name: elo5-system
+    restart: unless-stopped
+    ports:
+      # Com Apache/Nginx na frente (recomendado): só a própria VM enxerga a porta.
+      - "127.0.0.1:80:3000"
+      # Sem proxy, para abrir direto em http://IP-DA-VM: troque a linha acima por  - "80:3000"
+    environment:
+      PORT: 3000
+      BROKER_URL: mqtt://broker.hivemq.com:1883
+      # Código que os novos usuários precisam digitar para criar conta (o primeiro cadastro não precisa).
+      # Se ficar em branco, um código é gerado e aparece em: docker compose logs elo5
+      # CODIGO_CADASTRO: troque-este-codigo
+    volumes:
+      - elo5-data:/app/data     # usuários cadastrados (db.json) sobrevivem a rebuild e reinício
+
+volumes:
+  elo5-data:

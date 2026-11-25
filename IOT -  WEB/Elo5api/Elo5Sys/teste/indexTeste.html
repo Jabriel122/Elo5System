@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Corporativo</title>
+    <!-- O atributo 'defer' garante que o script só rode após a criação dos elementos HTML -->
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value.trim().toLowerCase();
+                const DOMINIO_PERMITIDO = '@elo5.com';
+
+                if (!email.endsWith(DOMINIO_PERMITIDO)) {
+                    alert(`Acesso permitido apenas para e-mails ${DOMINIO_PERMITIDO}`);
+                    return;
+                }
+
+                alert('E-mail válido! Processando login...');
+                // Prossegue com a requisição de login (ex: fetch('/api/login', ...))
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form id="loginForm">
+        <label for="email">E-mail corporativo:</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="usuario@elo5.com"
+            pattern="[a-zA-Z0-9._%+-]+@elo5\.com$" 
+            title="Por favor, use um e-mail terminado em @elo5.com"
+            required
+        >
+        <button type="submit">Entrar</button>
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELO5 SYSTEM - Tabela de Log IoT</title>
+  <style>
+    :root {
+      --bg-dark: #0b111e;
+      --card-bg: #131d2f;
+      --table-header: #1b283d;
+      --accent-cyan: #00d2a8;
+      --accent-blue: #00b4d8;
+      --text-main: #e2e8f0;
+      --text-muted: #8492a6;
+      --alert-red: #ff4757;
+      --alert-orange: #ffa502;
+      --alert-green: #2ed573;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Cabeçalho superior */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #1e2d42;
+      margin-bottom: 25px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 210, 168, 0.4);
+    }
+
+    .logo-title h1 {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #fff;
+    }
+
+    .logo-title span {
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      letter-spacing: 3px;
+    }
+
+    .status-bar {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--alert-green);
+      box-shadow: 0 0 8px var(--alert-green);
+    }
+
+    /* Título da Seção */
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .section-title h2 {
+      font-size: 1.2rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    /* Tabela de Logs */
+    .card-table {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      border: 1px solid #1e2d4a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    thead {
+      background-color: var(--table-header);
+    }
+
+    th {
+      padding: 14px 20px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid #18253b;
+      transition: background 0.2s;
+    }
+
+    tbody tr:hover {
+      background-color: #1a273e;
+    }
+
+    td {
+      padding: 14px 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Badges de Decisão */
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.ok {
+      background-color: rgba(46, 213, 115, 0.15);
+      color: var(--alert-green);
+      border: 1px solid var(--alert-green);
+    }
+
+    .badge.atencao {
+      background-color: rgba(255, 165, 2, 0.15);
+      color: var(--alert-orange);
+      border: 1px solid var(--alert-orange);
+    }
+
+    .badge.alerta {
+      background-color: rgba(255, 71, 87, 0.15);
+      color: var(--alert-red);
+      border: 1px solid var(--alert-red);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <!-- Cabeçalho -->
+    <header>
+      <div class="logo-container">
+        <div class="logo-icon"></div>
+        <div class="logo-title">
+          <h1>ELO5</h1>
+          <span>SYSTEM</span>
+        </div>
+      </div>
+      <div class="status-bar">
+        <div class="status-item"><span class="dot"></span> Sistema Online</div>
+        <div class="status-item">📡 Broker MQTT: Ativo</div>
+      </div>
+    </header>
+
+    <!-- Título -->
+    <div class="section-title">
+      <h2>SISTEMA DE LOG IOT</h2>
+    </div>
+
+    <!-- Tabela Principal de LOG -->
+    <div class="card-table">
+      <table>
+        <thead>
+          <tr>
+            <th>HORA</th>
+            <th>SENSOR DE PORTA (MC-38)</th>
+            <th>PIR (MOVIMENTO)</th>
+            <th>ULTRASSÔNICO</th>
+            <th>CARTÃO NFC</th>
+            <th>DECISÃO / STATUS</th>
+          </tr>
+        </thead>
+        <tbody id="logTableBody">
+          <tr>
+            <td colspan="6" style="text-align: center; color: var(--text-muted);">Aguardando dados da API...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const tbody = document.getElementById('logTableBody');
+    const INTERVALO_MS = 1500;
+
+    // Escapa o texto vindo da API antes de colocá-lo no HTML
+    // (o broker MQTT público aceita mensagens de qualquer pessoa)
+    function esc(valor) {
+      return String(valor ?? '').replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      }[c]));
+    }
+
+    async function buscarLogs() {
+      const response = await fetch('/api/sensores/logs');
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return response.json();
+    }
+
+    function renderizarTabela(logs) {
+      if (!logs || logs.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Nenhum evento registrado ainda.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = logs.map(log => `
+        <tr>
+          <td style="color: var(--text-muted); font-size: 0.85rem;">${esc(log.hora)}</td>
+          <td>${esc(log.porta)}</td>
+          <td>${esc(log.pir)}</td>
+          <td>${esc(log.distancia)}</td>
+          <td>${esc(log.cartao)}</td>
+          <td><span class="badge ${esc(log.statusClass)}">${esc(log.decisao)}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    async function atualizarLogs() {
+      try {
+        const data = await buscarLogs();
+        renderizarTabela(data.logs);
+      } catch (error) {
+        console.error('Erro ao buscar logs:', error);
+      }
+    }
+
+    // Um único timer, iniciado uma vez ao abrir a página
+    atualizarLogs();
+    setInterval(atualizarLogs, INTERVALO_MS);
+  </script>
+</body>
+
+</html>
